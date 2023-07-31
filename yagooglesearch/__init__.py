@@ -102,7 +102,7 @@ class SearchClient:
             exactly the same results.  Only Google knows why...
         :param dict extra_params: A dictionary of extra HTTP GET parameters, which must be URL encoded.  For example if
             you don't want Google to filter similar results you can set the extra_params to {'filter': '0'} which will
-            append '&filter=0' to every query.
+            append '' to every query.
         :param int max_search_result_urls_to_return: Max URLs to return for the entire Google search.
         :param int minimum_delay_between_paged_results_in_seconds: Minimum time to wait between HTTP requests for
             consecutive pages for the same search query.  The actual time will be a random value between this minimum
@@ -215,28 +215,28 @@ class SearchClient:
         self.url_search = (
             f"https://www.google.{self.tld}/search?hl={self.lang}&"
             f"q={self.query}&btnG=Google+Search&tbs={self.tbs}&safe={self.safe}&"
-            f"cr={self.country}&filter=0"
+            f"cr={self.country}"
         )
 
         # Subsequent searches starting at &start= and retrieving 10 search results at a time.
         self.url_next_page = (
             f"https://www.google.{self.tld}/search?hl={self.lang}&"
             f"q={self.query}&start={self.start}&tbs={self.tbs}&safe={self.safe}&"
-            f"cr={self.country}&filter=0"
+            f"cr={self.country}"
         )
 
         # First search requesting more than the default 10 search results.
         self.url_search_num = (
             f"https://www.google.{self.tld}/search?hl={self.lang}&"
             f"q={self.query}&num={self.num}&btnG=Google+Search&tbs={self.tbs}&"
-            f"safe={self.safe}&cr={self.country}&filter=0"
+            f"safe={self.safe}&cr={self.country}"
         )
 
         # Subsequent searches starting at &start= and retrieving &num= search results at a time.
         self.url_next_page_num = (
             f"https://www.google.{self.tld}/search?hl={self.lang}&"
             f"q={self.query}&start={self.start}&num={self.num}&tbs={self.tbs}&"
-            f"safe={self.safe}&cr={self.country}&filter=0"
+            f"safe={self.safe}&cr={self.country}"
         )
 
     def assign_random_user_agent(self):
