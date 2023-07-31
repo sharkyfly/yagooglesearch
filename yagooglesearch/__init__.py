@@ -185,8 +185,6 @@ class SearchClient:
 
         # Update proxy_dict if a proxy is provided.
         if proxy:
-            # Standardize case since the scheme will be checked against a hard-coded list.
-            self.proxy = proxy.lower()
 
             urllib_object = urllib.parse.urlparse(self.proxy)
             scheme = urllib_object.scheme
